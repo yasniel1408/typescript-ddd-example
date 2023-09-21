@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import ListProducts from "../../application/list-produts/ListProducts";
+import SaveProduct from "../../application/save-product/SaveProduct";
 
 class ProductsController {
   public async getProducts(req: Request, res: Response) {
@@ -7,16 +8,11 @@ class ProductsController {
     res.json(products);
   }
 
-  // public async createProduct(req: Request, res: Response) {
-  //   const productDto: ProductDto = req.body;
-  //   const product: Product = this.productMapper.dtoToDomain(productDto);
-  //   const productCreated: Product = await this.productUseCase.createProduct(
-  //     product
-  //   );
-  //   const productCreatedDto: ProductDto =
-  //     this.productMapper.domainToDto(productCreated);
-  //   res.json(productCreatedDto);
-  // }
+  public async createProduct(req: Request, res: Response) {
+    const productDto = req.body;
+    const response = await SaveProduct.execute(productDto);
+    res.json(response);
+  }
 }
 
 export default new ProductsController();

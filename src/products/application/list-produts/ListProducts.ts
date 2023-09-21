@@ -1,5 +1,4 @@
 import { ProductAggregate } from "../../domain/ProductAggregate";
-import { ProductFactory } from "../../domain/ProductFactory";
 import { ProductEntity } from "../../domain/entities/ProductEntity";
 import { ProductDao } from "../../infrastructure/db/ProductDao";
 import { ProductRepository } from "../../infrastructure/db/ProductRepository";
@@ -9,7 +8,6 @@ export class ListProducts {
   productRepository: ProductRepository = new ProductRepository(
     new ProductDao()
   );
-  productFactory: ProductFactory = new ProductFactory();
 
   async execute(): Promise<ProductEntity[]> {
     const productsDao = await this.productRepository.listProducts();
@@ -23,17 +21,17 @@ export class ListProducts {
   }
 
   private mapperProductsDaoToProductEntity(productsDao: any): ProductEntity[] {
-    return productsDao.map((productDao: any) =>
-      this.productFactory.createProductWithCategory(
-        productDao.id,
-        productDao.name,
-        productDao.description,
-        productDao.price,
-        productDao.stock,
-        productDao.category.name,
-        productDao.category.description
-      )
-    );
+    return productsDao.map((productDao: any) => ({
+      id: productDao.id,
+      name: productDao.name,
+      description: productDao.description,
+      price: productDao.price,
+      stock: productDao.stock,
+      category: {
+        name: productDao.category.name,
+        description: productDao.category.description,
+      },
+    }));
   }
 }
 

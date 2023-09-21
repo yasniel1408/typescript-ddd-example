@@ -3,10 +3,10 @@ import { NewProductAddedEvent } from "./events/NewProductAddedEvent";
 import { ProductEntity } from "./entities/ProductEntity";
 
 export class ProductAggregate {
-  private products: Map<string, ProductEntity> = new Map();
-  private cart: Map<string, ProductEntity> = new Map();
+  private products: Map<number, ProductEntity> = new Map();
+  private cart: Map<number, ProductEntity> = new Map();
 
-  addToCart(productId: string) {
+  addToCart(productId: number) {
     if (this.products.has(productId)) {
       const product = this.products.get(productId);
       this.cart.set(productId, product!);

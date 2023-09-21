@@ -1,1 +1,17 @@
 GET http://localhost:3000/api/products
+
+###
+
+POST http://localhost:3000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Product 3",
+    "description": "Description 3",
+    "price": 200,
+    "stock": 20,
+    "category": {
+        "name": "Category 3",
+        "description": "Description 3"
+    }
+}

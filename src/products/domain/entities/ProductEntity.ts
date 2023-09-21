@@ -1,8 +1,8 @@
 import { CategoryValueObject } from "../value-objects/CategoryValueObject";
 
 export class ProductEntity {
+  public id: number = Math.random();
   constructor(
-    public id: string,
     public name: string,
     public description: string,
     public price: number,

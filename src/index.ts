@@ -11,7 +11,8 @@ app.get("/", (req, res) => {
   console.log("ruta api");
   res.json("ruta api");
 });
-app.use("/api/products", ProductsController.getProducts);
+app.get("/api/products", ProductsController.getProducts);
+app.post("/api/products", ProductsController.createProduct);
 
 app.listen(app.get("port"), () => {
   console.log(`Server running on port ${app.get("port")}`);

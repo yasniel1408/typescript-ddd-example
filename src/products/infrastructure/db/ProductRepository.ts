@@ -8,7 +8,7 @@ export class ProductRepository implements IProductRepository {
     return await this.productDao.list();
   }
 
-  async addNewProduct(product: ProductDao) {
+  async addNewProduct(product: any) {
     this.productDao.save(product);
   }
 }

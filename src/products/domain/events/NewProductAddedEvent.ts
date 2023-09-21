@@ -1,3 +1,3 @@
 export class NewProductAddedEvent {
-  constructor(public productId: string, public productName: string) {}
+  constructor(public productId: number, public productName: string) {}
 }

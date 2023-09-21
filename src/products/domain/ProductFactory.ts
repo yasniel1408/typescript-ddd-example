@@ -3,7 +3,6 @@ import { ProductEntity } from "./entities/ProductEntity";
 
 export class ProductFactory {
   createProductWithCategory(
-    productId: string,
     productName: string,
     productDescription: string,
     productPrice: number,
@@ -14,7 +13,6 @@ export class ProductFactory {
     const category = new CategoryValueObject(categoryName, categoryDescription);
 
     const product = new ProductEntity(
-      productId,
       productName,
       productDescription,
       productPrice,
