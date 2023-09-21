@@ -24,27 +24,13 @@ export class ProductDao {
     },
   ];
 
-  public id: string;
-  public name: string;
-  public description: string;
-  public price: number;
-  public stock: number;
-  public category: {
-    name: string;
-    description: string;
-  };
-
-  async list() {
+  list(): Promise<any[]> {
     return Promise.resolve(this.products);
   }
 
-  async save(product) {
-    this.id = product.id;
-    this.name = product.name;
-    this.description = product.description;
-    this.price = product.price;
-    this.stock = product.stock;
-    this.category = product.category;
+  save(product: any) {
     this.products.push(product);
   }
 }
+
+export default new ProductDao();

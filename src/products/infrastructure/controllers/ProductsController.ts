@@ -1,23 +1,9 @@
 import { Request, Response } from "express";
-import { ListProducts } from "../../application/list-produts/ListProducts";
-import { ProductAggregate } from "../../domain/ProductAggregate";
-import { ProductRepository } from "../db/ProductRepository";
-import { ProductFactory } from "../../domain/ProductFactory";
-import { ProductDao } from "../db/ProductDao";
+import ListProducts from "../../application/list-produts/ListProducts";
 
 class ProductsController {
-  private listProducts: ListProducts;
-
-  constructor() {
-    this.listProducts = new ListProducts(
-      new ProductAggregate(),
-      new ProductRepository(new ProductDao()),
-      new ProductFactory()
-    );
-  }
-
   public async getProducts(req: Request, res: Response) {
-    const products = await this.listProducts.execute();
+    const products = await ListProducts.execute();
     res.json(products);
   }
 
